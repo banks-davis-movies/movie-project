@@ -17,18 +17,39 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <form class="d-flex">
-                    <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-danger" id="submit" type="submit">Search</button>
-                </form>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3">
+                    <form class="d-flex">
+                        <input class="form-control me-2" aria-label="Search" id="search" type="search" placeholder="Search">
+                        <button class="btn btn-outline-danger" id="submit" type="submit">Search</button>
+                    </form>
+                    <form class="d-flex px-5 justify-content-center align-items-center btn-outline-danger"> Sort:
+                        <label for="titleRadio" class="px-3" style="color: white">Title</label>
+                        <input class="radio" id="titleRadio" name="sort" type="radio">
+                        <label for="ratingRadio" class="px-3" style="color: white">Rating</label>
+                        <input class="radio" id="ratingRadio" name="sort" type="radio">
+                        <label for="genreRadio" class="px-3" style="color: white">Genre</label>
+                        <input class="radio" id="genreRadio" name="sort" type="radio">
+                    </form>
             </ul>
         </div>
     </div>
 </nav>
 
-<main>
-
+<main class="container">
+    <section id="movie-display" class="row mx-auto" style="width: 85%">
+        <div class="card mx-auto flip-card col-3">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="img/practiceposer.jpg" alt="poster" class="poster">
+                </div>
+                <div class="card-body flip-card-back">
+                    <h3>Movie Title</h3>
+                    <p>Rating</p>
+                    <p>Genre</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 

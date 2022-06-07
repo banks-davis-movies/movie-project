@@ -1,13 +1,66 @@
 
-/*font-family: 'Rock Salt', cursive; //Headings & Titles*/
-
+*{
+    box-sizing: border-box;
+}
 body {
     font-family: 'Schoolbell', cursive;
 }
 
-
+h1, h2, h3 {
+    font-family: 'Rock Salt', cursive;
+}
 
 
 .navbar-brand {
     font-family: 'Fredericka the Great', cursive;
+}
+
+.poster{
+    height: 95%;
+    padding-top: 1rem}
+
+.flip-card {
+    display: inline-block;
+    background-color: transparent;
+    width: 15rem;
+    height: 20rem;
+    border: 1px transparent solid;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+    background-image: url("../img/cardboard_flat_texture.jpeg");
+    color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+    background-image: url("../img/cardboard_flat_texture.jpeg");
+    color: black;
+    transform: rotateY(180deg);
 }
