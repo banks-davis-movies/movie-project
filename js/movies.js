@@ -18,10 +18,10 @@
 
 
 //pulls movie by ID number
-    const SelectById = (id) => {
-        //console.log(`${URL}/${id}`)
-        return fetch(`${URL}/${id}`).then(res => res.json()).then(res => console.log(res));
-    }
+//     const SelectById = (id) => {
+//         //console.log(`${URL}/${id}`)
+//         return fetch(`${URL}/${id}`).then(res => res.json()).then(res => console.log(res));
+//     }
     //SelectById(2);
 
 //add movies to databsase
@@ -43,19 +43,24 @@
         getMovies().then((data) => {
             let posters = data.map(movie => {
                 return `
-            <div>
-            <h3>Title: ${movie.title}</h3>
-            <p>Artist: ${movie.director}</p>
-            <p>Genre: ${movie.genre}</p>
-            <p>Rating: ${starRating(parseInt(movie.rating))}</p>
-            ${console.log(movie.rating)}
-            <button data-id="${movie.id}">Edit</button>
-            <button data-id="${movie.id}">Delete</button>
+                <div class="card mx-auto flip-card col-3">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="img/practiceposer.jpg" alt="poster" class="poster">
+                </div>
+                <div class="card-body flip-card-back">
+                    <h3>Title: ${movie.title}</h3>
+                    <p>Rating: ${starRating(parseInt(movie.rating))}</p>
+                    <p>Genre: ${movie.genre}</p>
+                    <button data-id="${movie.id}">Edit</button>
+                    <button data-id="${movie.id}">Delete</button>
+                </div>
             </div>
+        </div>
             `
             })
             console.log(posters)
-            document.querySelector('#stars').innerHTML = posters.join("");
+            document.querySelector("#movie-display").innerHTML = posters.join("");
         })
     }
     buildMovie();
