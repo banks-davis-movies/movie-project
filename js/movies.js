@@ -18,8 +18,8 @@
 
 //pulls movie by ID number
     const SelectById= (id) => {
-        //const URL2 = `https://aromatic-subsequent-sun.glitch.me/movies/${id}`;
-        return fetch(`${URL}/${id}`).then(res => res.json()).then(res => console.log(res));
+        const URL2 = `https://aromatic-subsequent-sun.glitch.me/movies/${id}`;
+        return fetch(URL2).then(res => res.json()).then(res => console.log(res));
     }
     SelectById(260);
 
@@ -55,21 +55,21 @@
             document.getElementById("ENTERLOCATION").innerHTML = posters.join("");
         })
     }
-    buildMovie();
+    //buildMovie();
 
 
 //add movie
-    document.getElementById("ENTERLOCATION").addEventListener("click", function (e) {
-        e.preventDefault();
-        let newMovie = {
-            title: document.getElementById("title").value,
-            artist: document.getElementById("artist").value
-        }
-        addMovie(newMovie).then((res) => {
-            console.log(res)
-            buildMovie()
-        })
-    })
+    //document.getElementById("ENTERLOCATION").addEventListener("click", function (e) {
+    //     e.preventDefault();
+    //     let newMovie = {
+    //         title: document.getElementById("title").value,
+    //         artist: document.getElementById("artist").value
+    //     }
+    //     addMovie(newMovie).then((res) => {
+    //         console.log(res)
+    //         buildMovie()
+    //     })
+    // })
 
 
 //delete a movie
