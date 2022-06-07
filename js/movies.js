@@ -3,11 +3,10 @@
 
     // This project's API: https://aromatic-subsequent-sun.glitch.me/movies
     // Poster API in keys file
-
+    const URL = "https://aromatic-subsequent-sun.glitch.me/movies";
 
     //load available movies. Needs edit to add data to page
     const getMovies = () => {
-        const URL = "https://aromatic-subsequent-sun.glitch.me/movies";
         return fetch(URL)
             .then(res => res.json())
             .then(results => console.log(results))
@@ -18,8 +17,8 @@
 
 //pulls movie by ID number
     const SelectById= (id) => {
-        const URL2 = `https://aromatic-subsequent-sun.glitch.me/movies/${id}`;
-        return fetch(URL2).then(res => res.json()).then(res => console.log(res));
+        //console.log(`${URL}/${id}`)
+        return fetch(`${URL}/${id}`).then(res => res.json()).then(res => console.log(res));
     }
     SelectById(260);
 
@@ -84,6 +83,6 @@
     }
 
     //deleteMovie();
-
+//console.log(`${URL}/${id}`)
 
 }())
