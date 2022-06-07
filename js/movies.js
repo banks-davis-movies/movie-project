@@ -9,21 +9,22 @@
     const getMovies = () => {
         return fetch(URL)
             .then(res => res.json())
-            .then(results => console.log(results))
-            .catch(error => console.error(error))
+        // return fetch(URL)
+        //     .then(res => res.json())
+        //     .then(results => console.log(results))
+        //     .catch(error => console.error(error))
     }
     //getMovies()
 
 
 //pulls movie by ID number
-    const SelectById= (id) => {
+    const SelectById = (id) => {
         //console.log(`${URL}/${id}`)
         return fetch(`${URL}/${id}`).then(res => res.json()).then(res => console.log(res));
     }
-    SelectById(260);
+    //SelectById(2);
 
-
-
+//add movies to databsase
     const addMovie = (movieObj) => {
         let options = {
             method: "POST",
@@ -32,12 +33,13 @@
             },
             body: JSON.stringify(songObj)
         }
-        return fetch(URL, options).then(res => res.json()).then(result => console.log("You've successfully created a new song!", result))
+        return fetch(URL, options).then(res => res.json()).then(result => console.log("You've added a movie", result))
     }
 
 
     //builds movie posters. Needs work
     const buildMovie = () => {
+        //console.log('building movies')
         getMovies().then((data) => {
             let posters = data.map(movie => {
                 return `
@@ -45,16 +47,18 @@
             <h3>Title: ${movie.title}</h3>
             <p>Artist: ${movie.director}</p>
             <p>Genre: ${movie.genre}</p>
-            <p>Rating: ${movie.rating}</p>
+            <p>Rating: ${starRating(parseInt(movie.rating))}</p>
+            ${console.log(movie.rating)}
             <button data-id="${movie.id}">Edit</button>
             <button data-id="${movie.id}">Delete</button>
             </div>
             `
             })
-            document.getElementById("ENTERLOCATION").innerHTML = posters.join("");
+            console.log(posters)
+            document.querySelector('#stars').innerHTML = posters.join("");
         })
     }
-    //buildMovie();
+    buildMovie();
 
 
 //add movie
@@ -84,5 +88,57 @@
 
     //deleteMovie();
 //console.log(`${URL}/${id}`)
+
+
+    function starRating(num) {
+        if (num === 1) {
+            return `
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star"></span>
+                     <span class="fa fa-star"></span>
+                     <span class="fa fa-star"></span>
+                     <span class="fa fa-star"></span>
+                    `
+        }
+         else if (num === 2) {
+                return `
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star"></span>
+                     <span class="fa fa-star"></span>
+                     <span class="fa fa-star"></span>
+                    `
+            }
+            else if (num === 3) {
+                    return `
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star"></span>
+                     <span class="fa fa-star"></span>
+                    `
+                }
+                 else if (num === 4) {
+                        return `
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star"></span>
+                    `
+                    }
+                     else if (num === 5) {
+                            return `
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                    `
+                        }
+                    }
+
+    //console.log(starRating(2));
+
 
 }())
