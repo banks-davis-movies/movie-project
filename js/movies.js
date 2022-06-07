@@ -41,24 +41,13 @@
     //builds movie posters.
     const buildMovie = () => {
         //console.log('building movies')
-        getMovies().then((data) => {
-            let posterData = data.map(movie => {
-                return fetch(`https://omdbapi.com/?t=${movie.title}&apikey=30f6f77b`)
-                    .then(res => res.json())
-                    .then((data) => {
-                        //console.log(data)
-                        let posterImg = data.Poster
-                        console.log(posterImg)
-                        return posterImg;
-                    })
-            })
             getMovies().then((data) => {
                 let posters = data.map(movie => {
                     return `
                 <div class="card mx-auto flip-card col-3">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img src="" alt="poster" class="poster">
+                    <img src="${movie.poster}" alt="poster" class="poster">
                 </div>
                 <div class="card-body flip-card-back">
                     <h3>Title: ${movie.title}</h3>
@@ -74,8 +63,6 @@
                 //console.log(posters)
                 document.querySelector("#movie-display").innerHTML = posters.join("");
             })
-
-        })
     }
     buildMovie();
 
