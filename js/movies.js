@@ -2,7 +2,13 @@
 (function () {
     // This project's API: https://aromatic-subsequent-sun.glitch.me/movies
     // Poster API in keys file
+    // $(window).on("load", function () {
+    //     $(".popup").fadeOut(7000);
+    // });
 
+    function popupHide() {
+        $(".popup").fadeOut(7000);
+    }
 
     const URL = "https://aromatic-subsequent-sun.glitch.me/movies";
 
@@ -12,7 +18,8 @@
             .then(res => res.json())
             .then(movies => {
                 //console.log(movies);
-                showMovies(movies);
+                showMovies(movies)
+
 
                 $(".delete").click(function () {
                     deletion($(this).attr("data-id")).then(callMovies);
@@ -60,7 +67,7 @@
     function showMovies(movies) {
 
         $("#movie-display").empty()
-
+        $(".popup").fadeOut(5000);
         movies.forEach(movie => {
 
 

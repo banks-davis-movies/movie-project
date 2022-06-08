@@ -72,3 +72,22 @@ h1, h2, h3 {
 .radio {
     color: white;
 }
+
+.popup {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .7);
+}
+.popup > div {
+    margin: auto;
+    background: white;
+    z-index: 1;
+    border: 5px solid black;
+    padding: 2em;
+    position: relative;
+    bottom: 4em;
+}
