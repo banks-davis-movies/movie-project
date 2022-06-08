@@ -14,14 +14,33 @@
                 console.log(movies);
                 showMovies(movies);
                 //add search features here to leverage the current api call
+                // console.log($(".delete"));
+                $(".delete").click(function () {
+                    deletion($(this).attr("data-id")).then(callMovies);
+                })
             })
     }
     callMovies()
 
+    function deletion(id) {
+        let options = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        console.log(`you tried to delete movie ${id}`);
+        return fetch(`${URL}/${id}`, options).then(() => console.log("This movie has been deleted successfully"))
+    }
 
 //build movie cards
     function showMovies(movies) {
+
+        $("#movie-display").empty()
+
         movies.forEach(movie => {
+
+
             if (movie.title !== undefined) {
                 $("#movie-display").append(`
                 <div class="card mx-auto flip-card col-3">
@@ -33,15 +52,15 @@
                     <h3>Title: ${movie.title}</h3>
                     <p>Rating: ${starRating(parseInt(movie.rating))}</p>
                     <p>Genre: ${movie.genre}</p>
-                    <button data-id="${movie.id}">Edit</button>
-                    <button data-id="${movie.id}">Delete</button>
+                    <button class="edit" onclick="alert('Edit ${movie.id}?')" data-id="${movie.id}">Edit</button>
+                    <button class="delete" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
         </div>`);
             }
         });
-    }
 
+    }
 
 //Title sort function for the radio button
     $("#titleRadio").click(() => {
@@ -63,7 +82,7 @@
                 $("#movie-display").html("");
                 showMovies(movies);
             })
-            .catch(() => $("#movie-display").html("Oops, something went wrong"));
+            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
     });
 
 //Rating sort function for the radio button
@@ -80,7 +99,7 @@
                 $("#movie-display").html("");
                 showMovies(movies);
             })
-            .catch(() => $("#movie-display").html("Oops, something went wrong"));
+            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
     });
 
     //Genre sort function for the radio button
@@ -103,27 +122,25 @@
                 $("#movie-display").html("");
                 showMovies(movies);
             })
-            .catch(() => $("#movie-display").html("Oops, something went wrong"));
+            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
     });
 
-
-
     // let button = document.querySelector('#submit');
-    // let input = document.querySelector('#search');
-    // button.addEventListener('click', function(e) {
-    //     e.preventDefault();
-    //     let searchTerm = input.value;
-    //     console.log(searchTerm);
-    //     fetch(URL)
-    //         .then((resp) => resp.json())
-    //         .then((movies) => {
-    //             //console.log(data)
-    //             document.querySelector('#user').innerHTML = `${movies['0']['actor'].login}`,
-    //                 document.querySelector('#last-push').innerHTML = `${movies['0']['created_at']}`,
-    //                 document.querySelector('#repo').innerHTML = `${movies['0']['repo'].name}`
-    //         })
-    //         .catch(error => console.error(error));
-    // })
+// let input = document.querySelector('#search');
+// button.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     let searchTerm = input.value;
+//     console.log(searchTerm);
+//     fetch(URL)
+//         .then((resp) => resp.json())
+//         .then((movies) => {
+//             //console.log(data)
+//             document.querySelector('#user').innerHTML = `${movies['0']['actor'].login}`,
+//                 document.querySelector('#last-push').innerHTML = `${movies['0']['created_at']}`,
+//                 document.querySelector('#repo').innerHTML = `${movies['0']['repo'].name}`
+//         })
+//         .catch(error => console.error(error));
+// })
 
 
     let button3 = document.querySelector("#submit")
@@ -140,7 +157,6 @@
             }
         }
     })
-
 
 //rough draft code below. will need finished forms to be useful
 
@@ -187,20 +203,6 @@
 //     }
 //changeMovie(updatedMovie);
 
-
-//delete a movie
-//     const deleteMovie = (id) => {
-//         let options = {
-//             method: "DELETE",
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         }
-//         return fetch(`${URL}/${id}`, options).then(() => console.log("The song has been deleted successfully")).then(buildMovie)
-//     }
-
-//deleteMovie();
-//console.log(`${URL}/${id}`)
 
 
 //convert rating in API call to a star display
