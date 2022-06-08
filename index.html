@@ -56,8 +56,25 @@
                     <label for="title">Title: </label>
                     <input type="text" id="title">
                     <br>
-                    <label for="genre">Genre: </label>
-                    <input type="text" id="genre">
+                    <div class="btn-group dropend">
+                        <button type="button" class="btn btn-outline-secondary">
+                            Genre:
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropright</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Dropdown menu links -->
+                            <li><a class="dropdown-item">Drama</a></li>
+                            <li><a class="dropdown-item">Comedy</a></li>
+                            <li><a class="dropdown-item">Action</a></li>
+                            <li><a class="dropdown-item">Fantasy</a></li>
+                            <li><a class="dropdown-item">Horror</a></li>
+                            <li><a class="dropdown-item">Romance</a></li>
+                            <li><a class="dropdown-item">Western</a></li>
+                            <li><a class="dropdown-item">Thriller</a></li>
+                        </ul>
+                    </div>
                     <br>
                         <span>Rating:</span>
                         <label for="one">1</label>
