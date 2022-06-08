@@ -64,6 +64,7 @@
         }
         posterCall(movie.title).then(r => movie.poster = r.Poster).then(() => addMovie(movie)).then(callMovies)
     })
+
 //build movie cards
     function showMovies(movies) {
         $("#movie-display").empty()
