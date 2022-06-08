@@ -32,6 +32,30 @@
         return fetch(`${URL}/${id}`, options).then(() => console.log("This movie has been deleted successfully"))
     }
 
+    const addMovie = (movieObj) => {
+        let options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(movieObj)
+        }
+        return fetch(URL, options).then(res => res.json()).then(result => console.log("You've added a movie", result))
+    }
+
+    const posterCall = title => {
+       return fetch(`http://www.omdbapi.com/?t=${title}&apikey=${MOVIE_API_KEY}`).then((r => r.json()));
+    }
+
+    $("#send").click(() => {
+        let movie = {
+            genre: $("#genre").val(),
+            poster: '',
+            rating: $('input[name="rating"]:checked').val(),
+            title: $("#title").val(),
+        }
+        posterCall(movie.title).then(r => movie.poster = r.Poster).then(() => addMovie(movie)).then(callMovies)
+    })
 //build movie cards
     function showMovies(movies) {
 
@@ -41,7 +65,7 @@
 
 
             if (movie.title !== undefined) {
-                $("#movie-display").append(`
+            $("#movie-display").append(`
                 <div class="card mx-auto flip-card col-3">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -58,8 +82,6 @@
         </div>`);
             }
         });
-
-    }
 
 //Title sort function for the radio button
     $("#titleRadio").click(() => {
@@ -124,8 +146,6 @@
             .catch(() => $("#movie-display").html("Oops, something went wrong"));
     });
 
-
-
     //Search functions - checks title and genre
     $("#submit").click((e) => {
         e.preventDefault()
@@ -137,6 +157,7 @@
             .then(movie => showMovies(movie))
             .catch(() => $("#movie-display").html("Oops, something went wrong"));
     })
+
 
 // Edit Movies
 //     const changeMovie = (movie) => {
@@ -154,9 +175,6 @@
 //         title: "TNT",
 //     }
 //changeMovie(updatedMovie);
-
-
-
 
 //convert rating in API call to a star display
 function starRating(num) {

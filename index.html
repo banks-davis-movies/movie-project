@@ -56,42 +56,34 @@
                     <label for="title">Title: </label>
                     <input type="text" id="title">
                     <br>
-                    <div class="btn-group dropend">
-                        <button type="button" class="btn btn-outline-secondary">
-                            Genre:
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropright</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Dropdown menu links -->
-                            <li><a class="dropdown-item">Drama</a></li>
-                            <li><a class="dropdown-item">Comedy</a></li>
-                            <li><a class="dropdown-item">Action</a></li>
-                            <li><a class="dropdown-item">Fantasy</a></li>
-                            <li><a class="dropdown-item">Horror</a></li>
-                            <li><a class="dropdown-item">Romance</a></li>
-                            <li><a class="dropdown-item">Western</a></li>
-                            <li><a class="dropdown-item">Thriller</a></li>
-                        </ul>
-                    </div>
+                    <label for="genre">Genre:</label>
+                    <select name="genreSelect" id="genre">
+                        <option value="Drama">Drama</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Action">Action</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Western">Western</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
                     <br>
                         <span>Rating:</span>
                         <label for="one">1</label>
-                        <input type="radio" name="rating" id="one">
+                        <input type="radio" name="rating" id="one" value="1">
                         <label for="two">2</label>
-                        <input type="radio" name="rating" id="two">
+                        <input type="radio" name="rating" id="two" value="2">
                         <label for="three">3</label>
-                        <input type="radio" name="rating" id="three">
+                        <input type="radio" name="rating" id="three" value="3">
                         <label for="four">4</label>
-                        <input type="radio" name="rating" id="four">
+                        <input type="radio" name="rating" id="four" value="4">
                         <label for="five">5</label>
-                        <input type="radio" name="rating" id="five">
+                        <input type="radio" name="rating" id="five" value="5">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nebermind...</button>
-                <button type="button" class="btn btn-primary">Yuss!</button>
+                <button type="button" id="send" data-bs-dismiss="modal" class="btn btn-primary">Yuss!</button>
             </div>
         </div>
     </div>
@@ -101,6 +93,7 @@
 
 
 <section id="scripts">
+<script src="js/keys.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/movies.js"></script>
