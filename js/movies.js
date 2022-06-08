@@ -19,14 +19,39 @@
             .then(movies => {
                 //console.log(movies);
                 showMovies(movies)
-
-
+                $(".edit").click(function () {
+                    $('#modalTitle').val($(this).siblings().attr("data-title"));
+                    $('#modalGenre').val($(this).siblings().attr("data-genre"));
+                    $('#edit').click(() => {
+                        console.log("Editing Movie")
+                        let movie = {
+                            id: $(this).attr('data-id'),
+                            genre: $("#modalGenre").val(),
+                            poster: '',
+                            rating: $('input[name="rating"]:checked').val(),
+                            title: $("#modalTitle").val(),
+                        }
+                        posterCall(movie.title).then(r => movie.poster = r.Poster).then( () => changeMovie(movie)).then(callMovies)
+                    })
+                })
                 $(".delete").click(function () {
                     deletion($(this).attr("data-id")).then(callMovies);
                 })
             })
     }
     callMovies()
+
+// Edit Movies
+    const changeMovie = (movie) => {
+        let options = {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(movie)
+        }
+        return fetch(`${URL}/${movie.id}`, options).then(resp => resp.json())
+    }
 
     function deletion(id) {
         let options = {
@@ -56,10 +81,10 @@
 
     $("#send").click(() => {
         let movie = {
-            genre: $("#genre").val(),
+            genre: $("#modalGenre").val(),
             poster: '',
             rating: $('input[name="rating"]:checked').val(),
-            title: $("#title").val(),
+            title: $("#modalTitle").val(),
         }
         posterCall(movie.title).then(r => movie.poster = r.Poster).then(() => addMovie(movie)).then(callMovies)
     })
@@ -79,10 +104,10 @@
                     <img src="${movie.poster}" alt="poster" class="poster">
                 </div>
                 <div class="card-body flip-card-back" id="pData">
-                    <h3>Title: ${movie.title}</h3>
-                    <p>Rating: ${starRating(parseInt(movie.rating))}</p>
-                    <p>Genre: ${movie.genre}</p>
-                    <button class="edit" onclick="alert('Edit ${movie.id}?')" data-id="${movie.id}">Edit</button>
+                    <h3 data-title="${movie.title}">Title: ${movie.title}</h3>
+                    <p data-rating="${movie.rating}">Rating: ${starRating(parseInt(movie.rating))}</p>
+                    <p data-genre="${movie.genre}">Genre: ${movie.genre}</p>
+                    <button class="edit" data-bs-toggle="modal" data-bs-target="#editForm" data-id="${movie.id}">Edit</button>
                     <button class="delete" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
