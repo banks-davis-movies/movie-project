@@ -63,7 +63,7 @@
                 $("#movie-display").html("");
                 showMovies(movies);
             })
-            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
+            .catch(() => $("#movie-display").html("Oops, something went wrong"));
     });
 
 //Rating sort function for the radio button
@@ -80,7 +80,7 @@
                 $("#movie-display").html("");
                 showMovies(movies);
             })
-            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
+            .catch(() => $("#movie-display").html("Oops, something went wrong"));
     });
 
     //Genre sort function for the radio button
@@ -103,8 +103,43 @@
                 $("#movie-display").html("");
                 showMovies(movies);
             })
-            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
+            .catch(() => $("#movie-display").html("Oops, something went wrong"));
     });
+
+
+
+    // let button = document.querySelector('#submit');
+    // let input = document.querySelector('#search');
+    // button.addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     let searchTerm = input.value;
+    //     console.log(searchTerm);
+    //     fetch(URL)
+    //         .then((resp) => resp.json())
+    //         .then((movies) => {
+    //             //console.log(data)
+    //             document.querySelector('#user').innerHTML = `${movies['0']['actor'].login}`,
+    //                 document.querySelector('#last-push').innerHTML = `${movies['0']['created_at']}`,
+    //                 document.querySelector('#repo').innerHTML = `${movies['0']['repo'].name}`
+    //         })
+    //         .catch(error => console.error(error));
+    // })
+
+
+    let button3 = document.querySelector("#submit")
+    button3.addEventListener('click', function(name) {
+        let divData = document.querySelector("#movie-display");
+        let divList = divData.querySelectorAll("div");
+        let input3 = document.querySelector('#search-text');
+        let searchTerm = input3.value.toLowerCase();
+        for (let x of divList) {
+            if (x.innerText.includes(searchTerm.value)) {
+
+            } else {
+                x.style.backgroundColor = "#999"
+            }
+        }
+    })
 
 
 //rough draft code below. will need finished forms to be useful
