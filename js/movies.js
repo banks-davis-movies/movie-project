@@ -106,8 +106,8 @@
                     <h3 data-title="${movie.title}">Title: ${movie.title}</h3>
                     <p data-rating="${movie.rating}">Rating: ${starRating(parseInt(movie.rating))}</p>
                     <p data-genre="${movie.genre}">Genre: ${movie.genre}</p>
-                    <button class="edit" data-bs-toggle="modal" data-bs-target="#editForm" data-id="${movie.id}">Edit</button>
-                    <button class="delete" data-id="${movie.id}">Delete</button>
+                    <button class="edit button" data-bs-toggle="modal" data-bs-target="#editForm" data-id="${movie.id}">Edit</button>
+                    <button class="delete button" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
         </div>`);
