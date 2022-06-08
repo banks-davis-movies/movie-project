@@ -19,7 +19,11 @@
 
 
                 $(".delete").click(function () {
-                    deletion($(this).attr("data-id")).then(callMovies);
+                    if (confirm('Are you sure you want to do this?')) {
+                        if (confirm("Are you really sure??")) {
+                            deletion($(this).attr("data-id")).then(callMovies);
+                        }
+                    }
                 })
             })
     }
@@ -76,8 +80,8 @@
                     <h3>Title: ${movie.title}</h3>
                     <p>Rating: ${starRating(parseInt(movie.rating))}</p>
                     <p>Genre: ${movie.genre}</p>
-                    <button class="edit" onclick="alert('Edit ${movie.id}?')" data-id="${movie.id}">Edit</button>
-                    <button class="delete" data-id="${movie.id}">Delete</button>
+                    <button class="edit button" onclick="alert('Edit ${movie.id}?')" data-id="${movie.id}">Edit</button>
+                    <button class="delete button" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
         </div>`);
