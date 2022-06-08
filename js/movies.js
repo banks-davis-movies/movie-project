@@ -2,9 +2,6 @@
 (function () {
     // This project's API: https://aromatic-subsequent-sun.glitch.me/movies
     // Poster API in keys file
-    // $(window).on("load", function () {
-    //     $(".popup").fadeOut(7000);
-    // });
 
     function popupHide() {
         $(".popup").fadeOut(7000);
@@ -65,12 +62,9 @@
     })
 //build movie cards
     function showMovies(movies) {
-
         $("#movie-display").empty()
         $(".popup").fadeOut(5000);
         movies.forEach(movie => {
-
-
             if (movie.title !== undefined) {
                 $("#movie-display").append(`
                 <div class="card mx-auto flip-card col-3">
