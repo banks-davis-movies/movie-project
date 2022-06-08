@@ -1,7 +1,7 @@
 "use strict";
 (function () {
-    // This project's API: https://aromatic-subsequent-sun.glitch.me/movies
-    // Poster API in keys file
+// This project's API: https://aromatic-subsequent-sun.glitch.me/movies
+// Poster API in keys file
 
     function popupHide() {
         $(".popup").fadeOut(7000);
@@ -9,7 +9,7 @@
 
     const URL = "https://aromatic-subsequent-sun.glitch.me/movies";
 
-    //load available movies. Can build all the search functionality into this as well
+//load available movies.
     const callMovies = () => {
         fetch(URL)
             .then(res => res.json())
@@ -67,7 +67,7 @@
 //build movie cards
     function showMovies(movies) {
         $("#movie-display").empty()
-        $(".popup").fadeOut(5000);
+        popupHide()
         movies.forEach(movie => {
             if (movie.title !== undefined) {
                 $("#movie-display").append(`
@@ -128,7 +128,7 @@
                 .catch(() => $("#movie-display").html("Oops, something went wrong"));
         });
 
-        //Genre sort function for the radio button
+//Genre sort function for the radio button
         $("#genreRadio").click(() => {
             fetch(URL)
                 .then(response => response.json())
@@ -144,14 +144,14 @@
                             return 0;
                         }
                     });
-                    console.log(movies);
+                    //console.log(movies);
                     $("#movie-display").html("");
                     showMovies(movies);
                 })
                 .catch(() => $("#movie-display").html("Oops, something went wrong"));
         });
 
-        //Search functions - checks title and genre
+//Search functions - checks title and genre
         $("#submit").click((e) => {
             e.preventDefault()
             let searchBox = document.querySelector('#search')
@@ -163,22 +163,6 @@
                 .catch(() => $("#movie-display").html("Oops, something went wrong"));
         })
     }
-// Edit Movies
-//     const changeMovie = (movie) => {
-//         let options = {
-//             method: "PATCH",
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(movie)
-//         }
-//         return fetch(`${URL}/${song.id}`, options).then(resp => resp.json())
-//     }
-//     let updatedMovie = {
-//         id: 1,
-//         title: "TNT",
-//     }
-//changeMovie(updatedMovie);
 
 //convert rating in API call to a star display
 function starRating(num) {
