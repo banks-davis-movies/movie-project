@@ -91,3 +91,16 @@ h1, h2, h3 {
     position: relative;
     bottom: 4em;
 }
+
+.button {
+    transition-duration: 0.4s;
+    border-radius: 8px;
+    background-color: transparent;
+    border-color: darkred;
+}
+
+.button:hover {
+    background-color: darkred;
+    color: white;
+}
+
