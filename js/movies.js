@@ -13,6 +13,7 @@
             .then(movies => {
                 //console.log(movies);
                 showMovies(movies);
+
                 $(".delete").click(function () {
                     deletion($(this).attr("data-id")).then(callMovies);
                 })
@@ -124,6 +125,7 @@
     });
 
 
+
     //Search functions - checks title and genre
     $("#submit").click((e) => {
         e.preventDefault()
@@ -135,6 +137,25 @@
             .then(movie => showMovies(movie))
             .catch(() => $("#movie-display").html("Oops, something went wrong"));
     })
+
+// Edit Movies
+//     const changeMovie = (movie) => {
+//         let options = {
+//             method: "PATCH",
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(movie)
+//         }
+//         return fetch(`${URL}/${song.id}`, options).then(resp => resp.json())
+//     }
+//     let updatedMovie = {
+//         id: 1,
+//         title: "TNT",
+//     }
+//changeMovie(updatedMovie);
+
+
 
 
 //convert rating in API call to a star display
