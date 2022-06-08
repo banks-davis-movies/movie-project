@@ -42,7 +42,7 @@
 
 
             if (movie.title !== undefined) {
-            $("#movie-display").append(`
+                $("#movie-display").append(`
                 <div class="card mx-auto flip-card col-3">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -60,10 +60,70 @@
             }
         });
 
-
     }
 
+//Title sort function for the radio button
+    $("#titleRadio").click(() => {
+        fetch(URL)
+            .then(response => response.json())
+            .then(movies => {
+                movies.sort((a, b) => {
+                    let titleOne = a.title.toLowerCase(),
+                        titleTwo = b.title.toLowerCase();
+                    if (titleOne < titleTwo) {
+                        return -1;
+                    } else if (titleOne > titleTwo) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+                console.log(movies);
+                $("#movie-display").html("");
+                showMovies(movies);
+            })
+            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
+    });
 
+//Rating sort function for the radio button
+    $("#ratingRadio").click(() => {
+        fetch(URL)
+            .then(response => response.json())
+            .then(movies => {
+                movies.sort((a, b) => {
+                    let ratingOne = parseFloat(a.rating),
+                        ratingTwo = parseFloat(b.rating);
+                    return ratingTwo - ratingOne;
+                });
+                console.log(movies);
+                $("#movie-display").html("");
+                showMovies(movies);
+            })
+            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
+    });
+
+    //Genre sort function for the radio button
+    $("#genreRadio").click(() => {
+        fetch(URL)
+            .then(response => response.json())
+            .then(movies => {
+                movies.sort((a, b) => {
+                    let genreOne = a.genre.toLowerCase(),
+                        genreTwo = b.genre.toLowerCase();
+                    if (genreOne < genreTwo) {
+                        return -1;
+                    } else if (genreOne > genreTwo) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+                console.log(movies);
+                $("#movie-display").html("");
+                showMovies(movies);
+            })
+            .catch(() => $("#movie-display").html("Oops, something went wrong :("));
+    });
 
 
 //rough draft code below. will need finished forms to be useful
@@ -94,7 +154,6 @@
 // })
 
 
-
 // Edit Movies
 //     const changeMovie = (movie) => {
 //         let options = {
@@ -114,67 +173,50 @@
 
 
 
-// delete a movie
-    const deleteMovie = (id) => {
-        let options = {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        return fetch(`${URL}/${id}`, options).then(() => console.log("This movie has been deleted successfully")).then(showMovies)
-    }
-
-//add eventlisteners to each delete button
-
 //convert rating in API call to a star display
-function starRating(num) {
-    if (num === 1) {
-        return `
+    function starRating(num) {
+        if (num === 1) {
+            return `
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
                     `
-    }
-    else if (num === 2) {
-        return `
+        } else if (num === 2) {
+            return `
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
                     `
-    }
-    else if (num === 3) {
-        return `
+        } else if (num === 3) {
+            return `
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star"></span>
                      <span class="fa fa-star"></span>
                     `
-    }
-    else if (num === 4) {
-        return `
+        } else if (num === 4) {
+            return `
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star"></span>
                     `
-    }
-    else if (num === 5) {
-        return `
+        } else if (num === 5) {
+            return `
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                      <span class="fa fa-star checked"></span>
                     `
+        }
     }
-}
 
 
 }())
