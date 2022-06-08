@@ -33,6 +33,30 @@
         return fetch(`${URL}/${id}`, options).then(() => console.log("This movie has been deleted successfully"))
     }
 
+    const addMovie = (movieObj) => {
+        let options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(movieObj)
+        }
+        return fetch(URL, options).then(res => res.json()).then(result => console.log("You've added a movie", result))
+    }
+
+    const posterCall = title => {
+       return fetch(`http://www.omdbapi.com/?t=${title}&apikey=${MOVIE_API_KEY}`).then((r => r.json()));
+    }
+
+    $("#send").click(() => {
+        let movie = {
+            genre: $("#genre").val(),
+            poster: '',
+            rating: $('input[name="rating"]:checked').val(),
+            title: $("#title").val(),
+        }
+        posterCall(movie.title).then(r => movie.poster = r.Poster).then(() => addMovie(movie)).then(callMovies)
+    })
 //build movie cards
     function showMovies(movies) {
 
@@ -68,18 +92,6 @@
 
 //rough draft code below. will need finished forms to be useful
 
-
-//     const addMovie = (movieObj) => {
-//         let options = {
-//             method: "POST",
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(songObj)
-//         }
-//         return fetch(URL, options).then(res => res.json()).then(result => console.log("You've added a movie", result))
-//     }
-
 //add movie click event
 //document.getElementById("ENTERLOCATION").addEventListener("click", function (e) {
 //     e.preventDefault();
@@ -111,21 +123,6 @@
 //         title: "TNT",
 //     }
 //changeMovie(updatedMovie);
-
-
-
-// delete a movie
-    const deleteMovie = (id) => {
-        let options = {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        return fetch(`${URL}/${id}`, options).then(() => console.log("This movie has been deleted successfully")).then(showMovies)
-    }
-
-//add eventlisteners to each delete button
 
 //convert rating in API call to a star display
 function starRating(num) {
