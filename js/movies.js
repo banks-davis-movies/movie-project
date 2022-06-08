@@ -65,7 +65,7 @@
 
 
             if (movie.title !== undefined) {
-            $("#movie-display").append(`
+                $("#movie-display").append(`
                 <div class="card mx-auto flip-card col-3">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -84,81 +84,80 @@
         });
 
 //Title sort function for the radio button
-    $("#titleRadio").click(() => {
-        fetch(URL)
-            .then(response => response.json())
-            .then(movies => {
-                movies.sort((a, b) => {
-                    let titleOne = a.title.toLowerCase(),
-                        titleTwo = b.title.toLowerCase();
-                    if (titleOne < titleTwo) {
-                        return -1;
-                    } else if (titleOne > titleTwo) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                });
-                console.log(movies);
-                $("#movie-display").html("");
-                showMovies(movies);
-            })
-            .catch(() => $("#movie-display").html("Oops, something went wrong"));
-    });
+        $("#titleRadio").click(() => {
+            fetch(URL)
+                .then(response => response.json())
+                .then(movies => {
+                    movies.sort((a, b) => {
+                        let titleOne = a.title.toLowerCase(),
+                            titleTwo = b.title.toLowerCase();
+                        if (titleOne < titleTwo) {
+                            return -1;
+                        } else if (titleOne > titleTwo) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    console.log(movies);
+                    $("#movie-display").html("");
+                    showMovies(movies);
+                })
+                .catch(() => $("#movie-display").html("Oops, something went wrong"));
+        });
 
 //Rating sort function for the radio button
-    $("#ratingRadio").click(() => {
-        fetch(URL)
-            .then(response => response.json())
-            .then(movies => {
-                movies.sort((a, b) => {
-                    let ratingOne = parseFloat(a.rating),
-                        ratingTwo = parseFloat(b.rating);
-                    return ratingTwo - ratingOne;
-                });
-                console.log(movies);
-                $("#movie-display").html("");
-                showMovies(movies);
-            })
-            .catch(() => $("#movie-display").html("Oops, something went wrong"));
-    });
+        $("#ratingRadio").click(() => {
+            fetch(URL)
+                .then(response => response.json())
+                .then(movies => {
+                    movies.sort((a, b) => {
+                        let ratingOne = parseFloat(a.rating),
+                            ratingTwo = parseFloat(b.rating);
+                        return ratingTwo - ratingOne;
+                    });
+                    console.log(movies);
+                    $("#movie-display").html("");
+                    showMovies(movies);
+                })
+                .catch(() => $("#movie-display").html("Oops, something went wrong"));
+        });
 
-    //Genre sort function for the radio button
-    $("#genreRadio").click(() => {
-        fetch(URL)
-            .then(response => response.json())
-            .then(movies => {
-                movies.sort((a, b) => {
-                    let genreOne = a.genre.toLowerCase(),
-                        genreTwo = b.genre.toLowerCase();
-                    if (genreOne < genreTwo) {
-                        return -1;
-                    } else if (genreOne > genreTwo) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                });
-                console.log(movies);
-                $("#movie-display").html("");
-                showMovies(movies);
-            })
-            .catch(() => $("#movie-display").html("Oops, something went wrong"));
-    });
+        //Genre sort function for the radio button
+        $("#genreRadio").click(() => {
+            fetch(URL)
+                .then(response => response.json())
+                .then(movies => {
+                    movies.sort((a, b) => {
+                        let genreOne = a.genre.toLowerCase(),
+                            genreTwo = b.genre.toLowerCase();
+                        if (genreOne < genreTwo) {
+                            return -1;
+                        } else if (genreOne > genreTwo) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    console.log(movies);
+                    $("#movie-display").html("");
+                    showMovies(movies);
+                })
+                .catch(() => $("#movie-display").html("Oops, something went wrong"));
+        });
 
-    //Search functions - checks title and genre
-    $("#submit").click((e) => {
-        e.preventDefault()
-        let searchBox = document.querySelector('#search')
-        let searchTerm = searchBox.value.toLowerCase()
-        fetch(URL)
-            .then(response => response.json())
-            .then(movies => movies.filter((movie) => movie.title.toLowerCase().includes(searchTerm) || movie.genre.toLowerCase().includes(searchTerm)))
-            .then(movie => showMovies(movie))
-            .catch(() => $("#movie-display").html("Oops, something went wrong"));
-    })
-
-
+        //Search functions - checks title and genre
+        $("#submit").click((e) => {
+            e.preventDefault()
+            let searchBox = document.querySelector('#search')
+            let searchTerm = searchBox.value.toLowerCase()
+            fetch(URL)
+                .then(response => response.json())
+                .then(movies => movies.filter((movie) => movie.title.toLowerCase().includes(searchTerm) || movie.genre.toLowerCase().includes(searchTerm)))
+                .then(movie => showMovies(movie))
+                .catch(() => $("#movie-display").html("Oops, something went wrong"));
+        })
+    }
 // Edit Movies
 //     const changeMovie = (movie) => {
 //         let options = {
