@@ -22,11 +22,11 @@
                     $('#edit').click(() => {
                         console.log("Editing Movie")
                         let movie = {
-                            id: $(this).attr('data-id'),
-                            genre: $("#modalGenre").val(),
-                            poster: '',
-                            rating: $('input[name="rating"]:checked').val(),
                             title: $("#modalTitle").val(),
+                            genre: $("#modalGenre").val(),
+                            rating: $('input[name="rating"]:checked').val(),
+                            poster: '',
+                            id: $(this).attr('data-id'),
                         }
                         posterCall(movie.title).then(r => movie.poster = r.Poster).then( () => changeMovie(movie)).then(callMovies)
                     })
@@ -82,10 +82,12 @@
 
     $("#send").click(() => {
         let movie = {
-            genre: $("#modalGenre").val(),
-            poster: '',
-            rating: $('input[name="rating"]:checked').val(),
             title: $("#modalTitle").val(),
+            genre: $("#modalGenre").val(),
+            rating: $('input[name="rating"]:checked').val(),
+            poster: '',
+
+
         }
         posterCall(movie.title).then(r => movie.poster = r.Poster).then(() => addMovie(movie)).then(callMovies)
     })
